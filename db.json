@@ -1805,8 +1805,8 @@
       "purchases": 5,
       "password": "pass1234",
       "phone": "+998111111111",
-      "cart":[],
-      "likes":[]
+      "cart": [],
+      "likes": []
     },
     {
       "id": "2",
@@ -1815,8 +1815,8 @@
       "purchases": 3,
       "password": "b0r1s2024",
       "phone": "+998222222222",
-      "cart":[],
-      "likes":[]
+      "cart": [],
+      "likes": []
     },
     {
       "id": "3",
@@ -1825,8 +1825,8 @@
       "purchases": 8,
       "password": "vict8ory!",
       "phone": "+998333333333",
-      "cart":[],
-      "likes":[]
+      "cart": [],
+      "likes": []
     },
     {
       "id": "4",
@@ -1835,8 +1835,8 @@
       "purchases": 2,
       "password": "glebSecure",
       "phone": "+998444444444",
-      "cart":[],
-      "likes":[]
+      "cart": [],
+      "likes": []
     },
     {
       "id": "5",
@@ -1845,8 +1845,8 @@
       "purchases": 7,
       "password": "d@rya77",
       "phone": "+998555555555",
-      "cart":[],
-      "likes":[]
+      "cart": [],
+      "likes": []
     },
     {
       "id": "6",
@@ -1855,8 +1855,8 @@
       "purchases": 4,
       "password": "EvG123456",
       "phone": "+998666666666",
-      "cart":[],
-      "likes":[]
+      "cart": [],
+      "likes": []
     },
     {
       "id": "7",
@@ -1865,8 +1865,8 @@
       "purchases": 1,
       "password": "z0ya_pass",
       "phone": "+998777777777",
-      "cart":[],
-      "likes":[]
+      "cart": [],
+      "likes": []
     },
     {
       "id": "8",
@@ -1875,8 +1875,8 @@
       "purchases": 6,
       "password": "ivan6Cool",
       "phone": "+998888888888",
-      "cart":[],
-      "likes":[]
+      "cart": [],
+      "likes": []
     },
     {
       "id": "9",
@@ -1885,8 +1885,8 @@
       "purchases": 9,
       "password": "Ks3niaW1n",
       "phone": "+998999999999",
-      "cart":[],
-      "likes":[]
+      "cart": [],
+      "likes": []
     },
     {
       "id": "10",
@@ -1895,9 +1895,22 @@
       "purchases": 0,
       "password": "LeoZero!",
       "phone": "+998000000000",
-      "cart":[],
-      "likes":[]
+      "cart": [],
+      "likes": []
+    },
+    {
+      "id": "3173",
+      "phone": "+998337799585",
+      "name": "Ramizjon",
+      "email": "Ramizjon@example.com",
+      "password": "defaultPassword",
+      "purchases": 0,
+      "carts": [
+        null
+      ],
+      "likes": [
+        null
+      ]
     }
-   
-  ]
+    ]
 }

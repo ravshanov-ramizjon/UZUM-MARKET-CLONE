@@ -43,7 +43,7 @@ export function Baners(items) {
     };
 
     changeSlide();
-    setInterval(goRight, 5000);
+    setInterval(goRight, 3000);
 
     const createButton = (className, text, onClick) => {
         const button = document.createElement("button");

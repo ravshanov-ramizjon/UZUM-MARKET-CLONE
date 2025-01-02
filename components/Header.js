@@ -113,8 +113,8 @@ export function Headers() {
             listItem.appendChild(countItem);
 
             listItem.onclick = () => {
-                localStorage.setItem('selectedCategory', category); // Сохранить категорию
-                window.location.href = "./categoryFiltr.html"; // Перейти на страницу фильтрации
+                localStorage.setItem('selectedCategory', category);
+                window.location.href = "./categoryFiltr.html";
             };
         }
     }
@@ -254,7 +254,7 @@ export function Headers() {
                 const user = await sendPhoneNumber(phone, name);
 
                 if (user) {
-                    loginUser(user); // Вход пользователя, если всё прошло успешно
+                    loginUser(user);
                 }
             } catch (error) {
                 console.error(error.message);
@@ -273,18 +273,18 @@ export function Headers() {
                     return existingUser;
                 } else {
                     alert(`Номер +998${phone} уже зарегистрирован другим пользователем.`);
-                    phoneNumberInput.value = ''; // Очистить поле ввода телефона
-                    userNameInput.value = ''; // Очистить поле ввода имени
+                    phoneNumberInput.value = '';
+                    userNameInput.value = '';
                     return null;
                 }
             } else {
-                return await createUser(phone, name); // Если пользователь не найден, создаем нового
+                return await createUser(phone, name);
             }
         }
 
         async function createUser(phone, name) {
-            let like = localStorage.getItem('cartItems');
-            let cart = localStorage.getItem('likedItems');
+            let like = JSON.parse(localStorage.getItem('cartItems'));
+            let cart = JSON.parse(localStorage.getItem('likedItems'));
 
             const newUser = {
                 phone: `+998${phone}`,
@@ -292,8 +292,8 @@ export function Headers() {
                 email: `${name}@example.com`,
                 password: 'defaultPassword',
                 purchases: 0,
-                carts:[cart],
-                likes:[like]
+                carts: [cart],
+                likes: [like]
             };
 
             const response = await fetch('http://localhost:3001/users', {
@@ -310,26 +310,23 @@ export function Headers() {
 
         function loginUser(user) {
             localStorage.setItem('user', JSON.stringify(user));
-            signIn = user.name; // Устанавливаем имя пользователя в переменную signIn
+            signIn = user.name; 
             profile.innerHTML = `
             <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M11 12.0002V10.7779C11 10.1296 10.7366 9.50788 10.2678 9.04946C9.79893 8.59104 9.16304 8.3335 8.5 8.3335H3.5C2.83696 8.3335 2.20107 8.59104 1.73223 9.04946C1.26339 9.50788 1 10.1296 1 10.7779V12.0002" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M6 5.8889C7.38071 5.8889 8.5 4.79448 8.5 3.44445C8.5 2.09442 7.38071 1 6 1C4.61929 1 3.5 2.09442 3.5 3.44445C3.5 4.79448 4.61929 5.8889 6 5.8889Z" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
             </svg> ${user.name}`;
             alert(`Добро пожаловать, ${user.name}!`);
-            toggleModal(); // Закрыть модальное окно
+            toggleModal(); 
         }
 
         function logoutUser() {
-            // Открыть модальное окно
+            
             document.getElementById('logoutModal').style.display = 'block';
 
-            // Обработчик кнопки подтверждения
             document.getElementById('confirmLogout').onclick = function () {
-                // Удалить информацию о пользователе из localStorage
                 localStorage.removeItem('user');
 
-                // Обновить интерфейс
                 profile.innerHTML = `
                 <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M11 12.0002V10.7779C11 10.1296 10.7366 9.50788 10.2678 9.04946C9.79893 8.59104 9.16304 8.3335 8.5 8.3335H3.5C2.83696 8.3335 2.20107 8.59104 1.73223 9.04946C1.26339 9.50788 1 10.1296 1 10.7779V12.0002" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
@@ -338,38 +335,33 @@ export function Headers() {
                 localStorage.removeItem('cartItems');
                 localStorage.removeItem('likedItems');
 
-                // Закрыть модальное окно
                 document.getElementById('logoutModal').style.display = 'none';
 
-                // Показать сообщение об успешном выходе
                 alert('Вы успешно вышли');
             };
 
-            // Обработчик кнопки отмены
             document.getElementById('cancelLogout').onclick = function () {
-                // Закрыть модальное окно без выполнения выхода
                 document.getElementById('logoutModal').style.display = 'none';
             };
         }
 
 
         submitButton.addEventListener('click', function () {
-            handleSubmit(); // Вызов handleSubmit при клике на кнопку
+            handleSubmit();
         });
 
-        // Выход из аккаунта
         profile.addEventListener('click', () => {
             if (localStorage.getItem('user')) {
                 logoutUser();
             } else {
-                toggleModal(); // Открыть модальное окно для входа
+                toggleModal(); 
             }
         });
         cabinet.addEventListener('click', () => {
             if (localStorage.getItem('user')) {
                 logoutUser();
             } else {
-                toggleModal(); // Открыть модальное окно для входа
+                toggleModal(); 
             }
         });
     }

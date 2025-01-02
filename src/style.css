@@ -24,10 +24,11 @@ a {
   position: fixed;
   right: 0;
   left: 0;
-  width: 1341px;
+  width: 1500px;
   margin: 0 auto;
   z-index: 9989;
   padding-bottom: 100px;
+  background-color: #fff;
 }
 
 .header,
@@ -232,7 +233,7 @@ input:focus {
   width: 25px;
   height: 26px;
   position: absolute;
-  top: 40%;
+  top: 48%;
   transform: translateY(-50%);
   font-size: 20px;
   font-weight: bold;
@@ -264,12 +265,12 @@ input:focus {
   width: 100%;
   border-radius: 30px;
   opacity: 0;
-  transition: opacity 1s ease-in-out;
+  transition: transform 1s ease-in-out;
   position: relative;
 }
 
 .baner {
-  padding-bottom: 84px;
+  padding:80px 0 84px;
   width: 1274px;
   position: relative;
   overflow: hidden;
@@ -683,7 +684,7 @@ p {
 }
 
 #overlay.visible {
-  display: block;
+  display: block !important;
 }
 
 .hidden {
@@ -952,7 +953,6 @@ display: none;
 
   img {
     width: 100%;
-    height: 100%;
     object-fit: cover;
   }
 }
@@ -1073,6 +1073,10 @@ display: none;
   font-weight: 500;
   line-height: 15.77px;
   text-align: center;
+}
+.info-like.active{
+  background-color: #7000FF;
+  color: #FFF;
 }
 
 .text-description-prod {

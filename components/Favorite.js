@@ -69,12 +69,11 @@ export function Favorite(item) {
 
             cart.onclick = (event) => {
                 event.stopPropagation()
-                const cartItems = JSON.parse(localStorage.getItem("cartItems")) || []; // Получаем данные из корзины, если они есть
+                const cartItems = JSON.parse(localStorage.getItem("cartItems")) || []; 
             
-                // Проверяем, чтобы в корзине не было одинаковых товаров
                 if (!cartItems.some((existingItem) => existingItem.id === product.id)) {
-                    cartItems.push(product); // Добавляем товар в корзину
-                    localStorage.setItem("cartItems", JSON.stringify(cartItems)); // Сохраняем обновленную корзину в localStorage
+                    cartItems.push(product); 
+                    localStorage.setItem("cartItems", JSON.stringify(cartItems));
                     alert("Товар добавлен в корзину");
                 } else {
                     alert("Этот товар уже в корзине");

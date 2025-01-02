@@ -3,7 +3,13 @@ export function reload(arr, place, Component) {
         console.error("Родительский элемент не найден");
         return;
     }
-    
+
+    document.querySelectorAll('.main div').forEach(div => {
+        if (!div.innerHTML.trim()) {
+            div.remove();
+        }
+    });
+
     place.innerHTML = "";
 
     for (let item of arr) {

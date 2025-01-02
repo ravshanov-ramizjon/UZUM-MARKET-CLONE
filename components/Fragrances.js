@@ -41,10 +41,8 @@ export function Fragrances(item) {
         </defs>
     </svg>`;
 
-    // Загрузка текущих данных о лайкнутых товарах
     let likedItems = JSON.parse(localStorage.getItem("likedItems")) || [];
 
-    // Функция для обновления состояния кнопки лайка
     likeBtn.onclick = (event) => {
         event.stopPropagation()
         if (!likedItems.some((existingItem) => existingItem.id === item.id)) {
@@ -63,7 +61,6 @@ export function Fragrances(item) {
         localStorage.setItem("likedItems", JSON.stringify(likedItems));
     };
 
-    // Инициализация состояния кнопки на основе данных в localStorage
     const isLiked = likedItems.some((existingItem) => existingItem.id === item.id);
     if (isLiked) {
         likeBtn.innerHTML = `<svg width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -99,10 +96,10 @@ export function Fragrances(item) {
         window.location.href = "./infoprod.html"
     }
 
-    gridElement.append(boxImg, title, cartPrice);
-    boxImg.append(imgProd, likeBtn);
-    cartPrice.append(boxPrice, cart);
-    boxPrice.append(skidPrice, price);
+    gridElement.append(boxImg,title,cartPrice);
+    boxImg.append(imgProd,likeBtn);
+    cartPrice.append(boxPrice,cart);
+    boxPrice.append(skidPrice,price);
 
     return fragrances;
 }

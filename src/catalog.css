@@ -319,6 +319,9 @@
     background: transparent;
     padding: 8px 0;
   }
+  .cart-count-box{
+    right: 45.5%;
+  }
 }
 
 @media (max-width: 425px) {

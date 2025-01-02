@@ -20,15 +20,21 @@ export function Info(prod) {
     const infoLike = document.querySelector(".btn .info-like");
     const descriptionTitle = document.querySelector(".description-title");
     const descriptionText = document.querySelector(".description-text");
-
+    
     if (typeof prod.quantity === "undefined") {
         prod.quantity = 1;
     }
-
+    minImages.forEach((img, index) => {
+        img.src = prod.images[index] || prod.thumbnail;
+    
+        img.onclick = () => {
+            bigImage.src = img.src;
+        };
+    });
     minImages.forEach((img, index) => {
         img.src = prod.images[index] || prod.thumbnail;
     });
-
+    
     bigImage.src = prod.thumbnail;
     leftButton.innerHTML = "<-"
     rightButton.innerHTML = "->"
@@ -38,67 +44,67 @@ export function Info(prod) {
     quantitySpan.textContent = prod.quantity;
     descriptionTitle.innerHTML = "Описание товара"
     descriptionText.innerHTML = prod.description
-
-    let currentSelectedImg = null; // Переменная для хранения текущего выбранного изображения
-
-minbox.forEach(img => {
-    img.onclick = () => {
-        // Если уже есть выбранное изображение, удаляем с него класс
-        if (currentSelectedImg) {
-            currentSelectedImg.classList.remove("mini-border");
-        }
-
-        // Добавляем класс на новое изображение
-        img.classList.add("mini-border");
-
-        // Обновляем ссылку на текущее выбранное изображение
-        currentSelectedImg = img;
-    };
+    
+    let currentSelectedImg = null; 
+    
+    minbox.forEach(img => {
+        img.onclick = () => {
+            if (currentSelectedImg) {
+                currentSelectedImg.classList.remove("mini-border");
+            }
+            
+            img.classList.add("mini-border");
+            
+            currentSelectedImg = img;
+        };
 });
 
-    
-
-    //код не работает потому что prod.thumbnail не является масивом
-    // let currentIndex = 0;
 
 
-    // const changeSlide = () => {
-    //     bigImage.src = prod.thumbnail[currentIndex].src; // Обновляем источник изображения
-    // };
+    let currentIndex = 0;
 
-    // leftButton.onclick = () => {
-    //     currentIndex = (currentIndex - 1 + prod.thumbnail.length) % prod.thumbnail.length; // Переход к предыдущему изображению
-    //     changeSlide();
-    // };
+const changeSlide = () => {
+    if (prod.images && prod.images.length > 0) {
+        bigImage.src = prod.images[currentIndex];
+    } else if (prod.thumbnail && prod.thumbnail.length > 0) {
+        bigImage.src = prod.thumbnail[currentIndex];
+    }
+};
 
-    // rightButton.onclick = () => {
-    //     currentIndex = (currentIndex + 1) % prod.thumbnail.length; // Переход к следующему изображению
-    //     changeSlide();
-    // };
+leftButton.onclick = () => {
+    currentIndex = (currentIndex - 1 + prod.images.length) % prod.images.length;
+    changeSlide();
+};
 
-    // changeSlide();
+rightButton.onclick = () => {
+    currentIndex = (currentIndex + 1) % prod.images.length;
+    changeSlide();
+};
+
+changeSlide();
+
 
     const likedItems = JSON.parse(localStorage.getItem("likedItems")) || [];
-    // const isLiked = likedItems.some((existingItem) => existingItem.id === item.id);
 
     infoLike.onclick = () => {
         if (!likedItems.some((existingItem) => existingItem.id === prod.id)) {
             likedItems.push(prod);
+            infoLike.classList.add("active")
         } else {
             const index = likedItems.findIndex((existingItem) => existingItem.id === prod.id);
             likedItems.splice(index, 1);
+            infoLike.classList.remove("active")
         }
         localStorage.setItem("likedItems", JSON.stringify(likedItems));
     };
 
 
     infoCart.onclick = () => {
-        const cartItems = JSON.parse(localStorage.getItem("cartItems")) || []; // Получаем данные из корзины, если они есть
+        const cartItems = JSON.parse(localStorage.getItem("cartItems")) || []; 
 
-        // Проверяем, чтобы в корзине не было одинаковых товаров
         if (!cartItems.some((existingItem) => existingItem.id === prod.id)) {
-            cartItems.push(prod); // Добавляем товар в корзину
-            localStorage.setItem("cartItems", JSON.stringify(cartItems)); // Сохраняем обновленную корзину в localStorage
+            cartItems.push(prod); 
+            localStorage.setItem("cartItems", JSON.stringify(cartItems)); 
             alert("Товар добавлен в корзину");
         } else {
             alert("Этот товар уже в корзине");
@@ -109,8 +115,6 @@ minbox.forEach(img => {
         desc.innerHTML = prod.description;
     });
 
-    // Уменьшение количества товара
-    // Функция для обновления цвета кнопок
     function updateButtonColors(prod, increaseButton, decreaseButton) {
         if (prod.quantity < prod.stock) {
             increaseButton.classList.remove("color-count");
@@ -125,7 +129,6 @@ minbox.forEach(img => {
         }
     }
 
-    // Обработчик уменьшения количества товара
     decreaseButton.onclick = () => {
         if (prod.quantity > 1) {
             prod.quantity--;
@@ -135,7 +138,6 @@ minbox.forEach(img => {
         }
     };
 
-    // Обработчик увеличения количества товара
     increaseButton.onclick = () => {
         if (prod.quantity < prod.stock) {
             prod.quantity++;
@@ -152,7 +154,6 @@ minbox.forEach(img => {
             const response = await axios.get('http://localhost:3001/products');
             let products = response.data;
 
-            // Фильтрация продуктов по совпадающей категории
             let filteredProducts = products.filter(product => product.category === category);
 
             filteredProducts.forEach(item => {

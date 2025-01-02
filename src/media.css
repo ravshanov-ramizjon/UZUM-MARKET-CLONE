@@ -7,7 +7,6 @@
   .header {
     width: 100%;
     max-width: 768px;
-    padding: 5px 10px;
   }
 
   .cont {
@@ -110,7 +109,7 @@
   .right-button {
     width: 15px;
     height: 16px;
-    top: 33%;
+    top: 45%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -122,6 +121,7 @@
   }
 
   .main {
+    width: 758px;
     grid-template-columns: repeat(3, 1fr);
     gap: 15px;
   }
@@ -386,12 +386,17 @@
     flex-direction: row;
     gap: 10px;
     max-height: 100px;
-    overflow-y: scroll;
-  }
+    overflow-x: auto; 
+    overflow-y: hidden; 
+    white-space: nowrap;  }
 
   .min-img {
     width: 70px;
     height: 90px;
+    overflow: hidden;
+img{
+  height: 70px;
+}
   }
 
   .line,
@@ -566,7 +571,8 @@
   .right-button {
     width: 8px;
     height: 8px;
-    top: 52%;
+    padding: 0 2px 2px;
+    top: 53%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -580,6 +586,9 @@
     width: 480px;
   }
 
+  .category-product-h2 {
+    padding: 10px 0 5px 30px;
+  }
   .main {
     width: 100%;
     max-width: 480px;
@@ -588,9 +597,6 @@
     margin: 0 auto;
   }
 
-  .category-product-h2 {
-    padding: 10px 0 5px 30px;
-  }
 
   .product {
     width: 100%;
